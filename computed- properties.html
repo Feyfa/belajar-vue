@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+        <form action="">
+            <input type="text" placeholder="first name" v-model="firstname"><br>
+            <input type="text" placeholder="middle name" v-model="middlename"><br>
+            <input type="text" placeholder="last name" v-model="lastname"><br>
+        </form>
+
+        <div>
+            Full Name : {{ sayHelloName }}
+        </div>
+    </div>
+
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+    
+        createApp({
+            data() {
+                return {
+                    firstname: '',
+                    middlename: '',
+                    lastname: '',
+                }
+            },
+            computed: {
+                // di dalam computed ini adalah method yang bisa dijalankan saat propertinya ada perubahan
+                // jika properti contoh nya dari this.firstname dan this.lastname tidak ada perubahan maka method ini tidak akan dijalankan
+                // contoh {{ fullname }}
+                fullname() {
+                    return `${this.firstname} ${this.middlename} ${this.lastname}`
+                },
+                sayHelloName(){
+                    return `Hello Sayang ${this.firstname} ${this.middlename} ${this.lastname}`
+                }
+            }
+        }).mount("#app");
+    </script>
+</body>
+</html>

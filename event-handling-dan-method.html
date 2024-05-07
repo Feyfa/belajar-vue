@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #app div {
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="app">
+       <div>
+            <!-- v-on:click digunakan untuk menghandle event click, ketika button di tekan maka tambah kan 1 count  -->
+            <button v-on:click="count--">-</button>
+            <span>{{ count }}</span>
+            <!-- v-on:click digunakan untuk menghandle event click, ketika button di tekan maka kurang kan 1 count  -->
+            <button v-on:click="count++">+</button>
+       </div>
+
+       <div>
+            <!-- @click digunakan untuk menghandle event click, ketika button di tekan maka tambah kan 1 mycount  -->
+            <button @click="mycount--">-</button>
+            <span>{{ mycount }}</span>
+            <!-- @click digunakan untuk menghandle event click, ketika button di tekan maka kurang kan 1 mycount  -->
+            <button @click="mycount++">+</button>
+       </div>
+
+       <div>
+            <!-- @click digunakan untuk menghandle event click, akan memanggil method yang namanya kurang()  -->
+            <button @click="kurang">-</button>
+            <span>{{ count2 }}</span>
+            <!-- @click digunakan untuk menghandle event click, akan memanggil method yang namanya tambah()  -->
+            <button @click="tambah">+</button>
+       </div>
+
+       <div>
+            <!-- v-model digunakan untuk mengisikan value input ke data yang namanya ambilValue -->
+            <!--  v-on:keydown.enter="sayHello" akan menjalankan method sayHello ketika enter di klik -->
+            <input 
+                type="text"
+                v-model="ambilValue"
+                v-on:keydown.enter="sayHello(ambilValue)">  
+            
+            <!-- v-model digunakan untuk mengisikan value input ke data yang namanya ambilValue -->
+            <!--  v-on:keydown.space="sayHello" akan menjalankan method sayHello ketika space di klik -->
+            <input 
+                type="text"
+                v-model="ambilValue2"
+                v-on:keydown.space="sayHello(ambilValue2)">    
+            
+            <!-- v-model digunakan untuk mengisikan value input ke data yang namanya ambilValue -->
+            <!--  v-on:keydown.space="sayHello" akan menjalankan method sayHello ketika space di klik -->
+            <input 
+                type="text"
+                v-model="ambilValue3"
+                @keyup="sayHello(ambilValue3)">    
+       </div>
+
+       <div>
+            <!-- contoh menggunakan event untuk prevent default -->
+            <form action="abcfd.html" method="post" @submit.prevent>
+                <button type="submit">Kirim Data</button>
+            </form>
+            
+            <!-- contoh menggunakan event untuk prevent default -->
+            <a href="abhjksdabbff.html" @click.prevent>Klik Ini</a>
+       </div>
+    </div>
+
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        createApp({
+            data() {
+                return {
+                    count: 0,
+                    mycount: 0,
+                    count2: 0,
+                    ambilValue: '',
+                    ambilValue2: '',
+                    ambilValue3: ''
+                }
+            },
+            methods: {
+                tambah() {
+                    this.count2++;                    
+                },
+                kurang() {
+                    this.count2--;
+                },
+                sayHello(msg) {
+                    alert(`Hello ${msg}`);
+                }
+            },
+        }).mount("#app");
+    </script>
+
+</body>
+</html>

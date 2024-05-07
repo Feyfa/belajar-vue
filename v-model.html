@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app div {
+            border: 1px solid black;
+            margin: 1rem 0;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <div>
+            <!-- v-model="username" itu sama saja mengikat ke sebuah variabel yang ada di dalam data -->
+            <!-- jadi ketika isi value dari input itu berubah maka isi dari username nya juga berubah -->
+            <input type="text" placeholder="username" v-model="username">
+
+            <p>username : {{ username }}</p>
+        </div>
+
+        <div>
+            <textarea name="" id="" v-model="address"></textarea>
+            <p>address : {{ address }}</p>
+        </div>
+
+        <div>
+            <label for="">Gender</label>
+            <input type="radio" value="pria" v-model="gender">pria
+            <input type="radio" value="wanita" v-model="gender">wanita
+            <p>gender : {{ gender }}</p>
+        </div>
+
+        <div>
+            <!-- saat nmenggunakan v-model di checkbox, maka hobi harus berbentuk array -->
+            <label for="">Hobi</label>
+            <input type="checkbox" value="tidur" v-model="hobi">tidur
+            <input type="checkbox" value="makan" v-model="hobi">makan
+            <input type="checkbox" value="main" v-model="hobi">main
+            <p>
+                hobi : 
+                <ul>
+                    <li v-for="(element, index) in hobi">{{ element }}</li>
+                </ul>
+            </p>
+        </div>
+
+        <div>
+            <label for="">Country</label>
+
+            <select name="" id="" v-model="negara">
+                <option value="indonesia">indonesia</option>
+                <option value="malaysia">malaysia</option>
+                <option value="jerman">jerman</option>>
+            </select>
+
+            <p>negara : {{ negara }}</p>
+        </div>
+    </div>
+    
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+    
+        createApp({
+            data() {
+                return {
+                    username: '',
+                    address: '',
+                    gender: '',
+                    hobi: [],
+                    negara: ''
+                }
+            },
+        }).mount("#app");
+    </script>
+</body>
+</html>

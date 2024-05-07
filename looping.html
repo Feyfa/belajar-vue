@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- melakukan perulangan dari 1 - 10 -->
+        <h1 v-for="angka in 10">{{ angka }}</h1>
+
+        <!-- melakukan perulangan untuk array -->
+        <ul>
+            <li v-for="(item, index) in fruits" :key="index">
+                <span>{{ index }}</span>
+                <span>{{ item }}</span>
+            </li>
+        </ul>
+
+        <!-- melakukan perulangan untuk array -->
+        <ul>
+            <li v-for="(nama_buah, index) in fruits">
+                <span>{{ index }}</span>
+                <span>{{ nama_buah }}</span>
+            </li>
+        </ul>
+
+        <!-- membuat tombol untuk delete array -->
+        <ul>
+            <li v-for="(nama_buah, index) in fruits">
+                <span>{{ index }}</span>
+                <span>{{ nama_buah }}</span>
+                <button @click="hapus(index)">x</button>
+            </li>
+        </ul>
+
+        <!-- melakukan perilangan pada array of object -->
+        <ul>
+            <li v-for="(item, index) in  persons">
+                <span>{{ index }}. {{ item.firstName }} {{ item.lastName }}</span>
+            </li>
+        </ul>
+    </div>
+
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+    
+        createApp({
+            data() {
+                return {
+                    fruits: ['lemon', 'pepaya', 'apple', 'mango'],
+                    persons: [
+                        {firstName: 'Muhammad', lastName: 'Jidan'},
+                        {firstName: 'Mas', lastName: 'Aji'},
+                        {firstName: 'Deri', lastName: 'Ramadhan'},
+                        {firstName: 'Agies', lastName: 'Ramadhan'},
+                    ]
+                }
+            },
+            methods: {
+                hapus(index) {
+                    // untuk mengahapus elemen array bedasarkan index
+                    this.fruits.splice(index, 1);
+                }
+            },
+        }).mount("#app");
+    </script>
+</body>
+</html> 

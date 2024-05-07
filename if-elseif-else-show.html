@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- v-if itu jika true akan dibuat, jika else maka tidak akan dibuat -->
+        <div v-if="tampil">
+            {{ message }}
+        </div>  
+        <!-- v-show jika true akan dibuat, jika else tetap dibuat tetapi style display nya none -->
+        <div v-show="tampil">
+            Nama Saya Muhammad Jidan
+        </div>
+
+
+        <div v-if="nilai <= 100">
+            {{ nilai }} Sangat Bagus
+        </div>
+        <div v-else-if="nilai < 90">
+            {{ nilai }} Bagus
+        </div>
+        <div v-else-if="nilai < 80">
+            {{ nilai }} Lumayan
+        </div>
+        <div v-else="nilai < 70">
+            {{ nilai }} Anda Remedial
+        </div>
+    </div>
+    
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        createApp({
+            data() {
+                return {
+                    message: 'Hello World Hai',
+                    tampil: false,
+                    nilai: 69
+                }
+            }
+        }).mount('#app');
+
+    </script>
+</body>
+</html>

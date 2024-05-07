@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .textred {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <div>
+            <!-- tidak bisa mengambil value ketika di properti -->
+            <a href="{{ chatgpt }}">chatgpt</a>
+
+            <br>
+
+            <!-- menggunakan v-bind:href="vuejs" ketika isi value dari variabel vuejs dimasukan ke dalam Attribute href-->
+            <a v-bind:href="vuejs">vuejs</a>
+
+            <br>
+
+            <!-- menggunakan :href="reactjs" ketika isi value dari variabel reactjs dimasukan ke dalam Attribute href -->
+            <a :href="reactjs">reactjs</a>
+        </div>
+
+        <div>
+            <!-- tanpa menggunakan class bindind -->
+            <p class="textred">{{ nameGambar }}</p>
+            <!-- menggunakan class bindind -->
+            <p v-bind:class="selectedClass">{{ nameGambar }}</p>
+
+            <!-- menggunakan v-bind:src dan :img itu digunakan ketika isi value dari variabel gambar di masukan ke dalam atribute src -->
+            <img v-bind:src="gambar" style="width: 300px;">
+            <img :src="gambar" v-bind:src="{width: lebarGambar}">
+            <img 
+                v-bind:alt="'pesan jika gambar hilang = ' + nameGambar"
+                v-bind:title="'pesan jika gambar hilang = ' + nameGambar">
+        </div>
+    </div>
+
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+    
+        createApp({
+            data() {
+                return {
+                    chatgpt: 'https://chatgpt.com/',
+                    vuejs: 'https://vuejs.org/',
+                    reactjs: 'https://react.dev/',
+                    nameGambar: 'Gambar Beruang',
+                    gambar: 'https://png.pngtree.com/png-vector/20230726/ourmid/pngtree-coloring-pages-free-kids-printable-teddy-bear-drawing-in-pencil-cartoon-png-image_6746133.png',
+                    lebarGambar: '500px',
+                    selectedClass: 'textred'
+                }
+            },
+        }).mount("#app");
+    </script>
+</body>
+</html>
