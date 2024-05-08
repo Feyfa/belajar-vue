@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" value="whatever" ref="inputan">
+        <input type="number" :value="count" ref="hitungan">
+        <button @click="count++">add</button>
+    </div>
+
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
+        createApp({
+            data() {
+                return {
+                    message: 'Hello World',
+                    count: 0,
+                }
+            },
+            // ketika di lifecycle beforeCreate maka data data yang dibuat belum dikenali
+            // ini dibuktikan isi value dari message = undefined
+            beforeCreate() {
+                console.log(`before create : ${this.message}`);
+            },
+            // ketika di lifecycle created maka data data yang dibuat sudah dikenali
+            // ini di buktikan isi value dari message = 'Hello World'
+            created() {
+                console.log(`create : ${this.message}`);
+            },
+            // ketika di lifecycle beforeMount maka elemen dom atau html belum dikenali
+            // ini dibuktikan isi value dari referensi inputan = undefined
+            beforeMount() {
+                console.log(`before mount : ${this.$refs.inputan}`);
+            },
+            // ketika di lifecycle beforeMount maka elemen dom atau html sudah dikenali
+            // ini dibuktikan isi value dari referensi inputan = [object HTMLInputElement]
+            mounted() {
+                console.log(`mount : ${this.$refs.inputan}`);
+                console.log(`mount : ${this.$refs.inputan.value}`);
+            },
+            // lifecycle beforeUpdate akan menangkap kejadian sebelum ada perubahan
+            // contoh di elemen yang memiliki ref="hitungan" itu awalnya value nya 0 diambil dari count
+            // lalu misal ada perubahan di variabel count nya menjadi 1, maka lifecycle ini akan dijalankan dan mengambil data sebelum berubah yaitu 0
+            beforeUpdate() {
+                console.log(`before update : ${this.$refs.hitungan}`);
+                console.log(`before update : ${this.$refs.hitungan.value}`);
+            },
+            // lifecycle updated akan menangkap kejadian setelah ada perubahan
+            // contoh di elemen yang memiliki ref="hitungan" itu awalnya value nya 0 diambil dari count
+            // lalu misal ada perubahan di variabel count nya menjadi 1, maka lifecycle ini akan dijalankan dan mengambil data setelah berubah yaitu 1
+            updated() {
+                console.log(`update : ${this.$refs.hitungan}`);
+                console.log(`update : ${this.$refs.hitungan.value}`);
+            },
+        }).mount('#app');
+
+    </script>
+
+</body>
+</html>
